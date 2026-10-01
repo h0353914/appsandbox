@@ -1,6 +1,9 @@
 /* App Sandbox - WebView2 Frontend */
 'use strict';
 
+/* Language files (lang/*.js) have registered themselves by now. */
+initI18n();
+
 /* ---- State ---- */
 let vms = [];
 let selectedVm = -1;
@@ -146,7 +149,7 @@ window.onHostMessage = function(msg) {
         case 'confirmResult': if (pendingConfirm) pendingConfirm.resolve(msg.confirmed); break;
         case 'adapters':      populateAdapters(msg.adapters, msg.defaultIndex); break;
         case 'templates':     populateTemplates(msg.templates); break;
-        case 'alert':         showModal(t('Error'), msg.message, t('OK')); break;
+        case 'alert':         showModal(t('Error'), tn(msg.message), t('OK')); break;
         case 'prereqRequired': onPrereqRequired(); break;
         case 'prereqReboot':   onPrereqReboot(); break;
         case 'prereqProgress': onPrereqProgress(msg); break;
@@ -950,7 +953,7 @@ function updateStatusCell(td, vm) {
         else if (vm.osType === 'Linux') defaultLabel = t('Installing Linux') + ' ';
         else                            defaultLabel = t('Installing Windows') + ' ';
         label = (vm.installStatus && vm.installStatus.length > 0)
-            ? (vm.installStatus + ' ')
+            ? (tn(vm.installStatus) + ' ')
             : defaultLabel;
         className = 'status-building';
     } else if (vm.running) {
@@ -1647,7 +1650,8 @@ function appendLog(msg) {
     var panel = document.getElementById('log-panel');
     var div = document.createElement('div');
     div.className = 'log-line';
-    div.textContent = msg;
+    div.dataset.raw = msg;   /* kept so the line can be re-translated on a language switch */
+    div.textContent = tn(msg);
     panel.appendChild(div);
     panel.scrollTop = panel.scrollHeight;
 }
@@ -1810,6 +1814,9 @@ function reportMinSize() {
 /* Called by i18n.js after the static markup has been re-translated. Re-render
  * everything that app.js builds from strings at runtime. */
 window.onLanguageChanged = function() {
+    document.querySelectorAll('#log-panel .log-line').forEach(function(line) {
+        line.textContent = tn(line.dataset.raw);
+    });
     renderVmTable();
     if (lastHostInfo) updateHostInfo(lastHostInfo);
     var autoOpt = document.querySelector('#net-adapter option[value=""]');

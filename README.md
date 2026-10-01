@@ -20,7 +20,7 @@ Windows features:
 - Provision and boot with / without internet
 - Supports running Claude Cowork and Docker inside the VM thanks to Nested Virtualization Support
 - Headless mode: a scriptable local HTTP/JSON API + dependency-free Python SDK (`asb.py`) for creating and driving GPU-accelerated VMs programmatically
-- Multilingual UI: English and Traditional Chinese (繁體中文), picked automatically from the system language or via the language selector. New languages are added in `web/i18n.js`
+- Multilingual UI: English and Traditional Chinese (繁體中文), picked automatically from the system language or via the language selector. Each language is one file in `web/lang/` (UI text plus translations of the native host's log/alert/status messages)
 
 Mac features:
 - macOS or Windows 11 ARM VM support
