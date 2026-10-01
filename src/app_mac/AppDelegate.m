@@ -30,7 +30,7 @@
         NSMenu *appSubmenu = [[NSMenu alloc] init];
         appItem.submenu = appSubmenu;
         NSString *appName = [[NSProcessInfo processInfo] processName];
-        [appSubmenu addItemWithTitle:[NSString stringWithFormat:@"Quit %@", appName]
+        [appSubmenu addItemWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Quit %@", nil), appName]
                               action:@selector(terminate:)
                        keyEquivalent:@"q"];
         [NSApp setMainMenu:mainMenu];
@@ -39,16 +39,20 @@
     /* Find or create a "View" menu. */
     NSMenuItem *viewItem = nil;
     for (NSMenuItem *it in mainMenu.itemArray) {
-        if ([it.title isEqualToString:@"View"]) { viewItem = it; break; }
+        if ([it.title isEqualToString:@"View"] ||
+            [it.title isEqualToString:NSLocalizedString(@"View", nil)]) { viewItem = it; break; }
     }
     if (!viewItem) {
-        viewItem = [[NSMenuItem alloc] initWithTitle:@"View" action:NULL keyEquivalent:@""];
-        viewItem.submenu = [[NSMenu alloc] initWithTitle:@"View"];
+        NSString *viewTitle = NSLocalizedString(@"View", nil);
+        viewItem = [[NSMenuItem alloc] initWithTitle:viewTitle action:NULL keyEquivalent:@""];
+        viewItem.submenu = [[NSMenu alloc] initWithTitle:viewTitle];
         /* Insert before Window/Help, else append at the end. */
         NSUInteger insertAt = mainMenu.itemArray.count;
         for (NSUInteger i = 0; i < mainMenu.itemArray.count; i++) {
             NSString *t = mainMenu.itemArray[i].title;
-            if ([t isEqualToString:@"Window"] || [t isEqualToString:@"Help"]) {
+            if ([t isEqualToString:@"Window"] || [t isEqualToString:@"Help"] ||
+                [t isEqualToString:NSLocalizedString(@"Window", nil)] ||
+                [t isEqualToString:NSLocalizedString(@"Help", nil)]) {
                 insertAt = i; break;
             }
         }
@@ -56,7 +60,7 @@
     }
 
     NSMenuItem *logItem = [[NSMenuItem alloc]
-        initWithTitle:@"Event Log"
+        initWithTitle:NSLocalizedString(@"Event Log", nil)
                action:@selector(toggleEventLog:)
         keyEquivalent:@"l"];
     logItem.target = self;
@@ -94,18 +98,22 @@
 
     NSAlert *alert = [[NSAlert alloc] init];
     alert.alertStyle = NSAlertStyleWarning;
-    alert.messageText = inProgress.count == 1
-        ? @"Quit while creating a VM?"
-        : @"Quit while creating VMs?";
+    /* Whole sentences per case (not spliced nouns/pronouns) so translations
+     * can reorder freely. */
     NSString *names = [inProgress componentsJoinedByString:@", "];
-    NSString *listNoun = inProgress.count == 1 ? @"VM is" : @"VMs are";
-    NSString *objectPronoun = inProgress.count == 1 ? @"it" : @"them";
-    alert.informativeText = [NSString stringWithFormat:
-        @"The following %@ still being created: %@.\n\n"
-        @"Quitting now will cancel the download and delete %@.",
-        listNoun, names, objectPronoun];
-    [alert addButtonWithTitle:@"Quit and Delete"];
-    [alert addButtonWithTitle:@"Cancel"];
+    if (inProgress.count == 1) {
+        alert.messageText = NSLocalizedString(@"Quit while creating a VM?", nil);
+        alert.informativeText = [NSString stringWithFormat:
+            NSLocalizedString(@"The following VM is still being created: %@.\n\n"
+                              @"Quitting now will cancel the download and delete it.", nil), names];
+    } else {
+        alert.messageText = NSLocalizedString(@"Quit while creating VMs?", nil);
+        alert.informativeText = [NSString stringWithFormat:
+            NSLocalizedString(@"The following VMs are still being created: %@.\n\n"
+                              @"Quitting now will cancel the download and delete them.", nil), names];
+    }
+    [alert addButtonWithTitle:NSLocalizedString(@"Quit and Delete", nil)];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
 
     NSModalResponse resp = [alert runModal];
     if (resp != NSAlertFirstButtonReturn) return NSTerminateCancel;

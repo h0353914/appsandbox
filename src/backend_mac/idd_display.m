@@ -557,7 +557,7 @@ static __weak IddDisplayWindow *g_mouseOwner;
                                                   styleMask:style
                                                     backing:NSBackingStoreBuffered
                                                       defer:NO];
-    window.title = [NSString stringWithFormat:@"%@ — Display", name];
+    window.title = [NSString stringWithFormat:NSLocalizedString(@"%@ — Display", nil), name];
     [window setAcceptsMouseMovedEvents:YES];
     [window center];
 
@@ -620,7 +620,7 @@ static __weak IddDisplayWindow *g_mouseOwner;
     _audioMuted = !_audioMuted;
     _pcmHead = _pcmTail = 0;
     pthread_mutex_unlock(&_pcmLock);
-    self.window.title = [NSString stringWithFormat:@"%@%@ — Display", _audioMuted ? @"🔇 " : @"", self.name];
+    self.window.title = [NSString stringWithFormat:NSLocalizedString(@"%@%@ — Display", nil), _audioMuted ? @"🔇 " : @"", self.name];
 }
 
 - (void)toggleTransmitHotkeys:(id)sender {
@@ -632,10 +632,10 @@ static __weak IddDisplayWindow *g_mouseOwner;
 
 - (void)showTitlebarMenuAtPoint:(NSPoint)point {
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@""];
-    NSMenuItem *mute = [menu addItemWithTitle:@"Mute audio" action:@selector(toggleAudioMute:) keyEquivalent:@""];
+    NSMenuItem *mute = [menu addItemWithTitle:NSLocalizedString(@"Mute audio", nil) action:@selector(toggleAudioMute:) keyEquivalent:@""];
     mute.target = self;
     mute.state = _audioMuted ? NSControlStateValueOn : NSControlStateValueOff;
-    NSMenuItem *hotkeys = [menu addItemWithTitle:@"Transmit Keyboard Hotkeys"
+    NSMenuItem *hotkeys = [menu addItemWithTitle:NSLocalizedString(@"Transmit Keyboard Hotkeys", nil)
                                        action:@selector(toggleTransmitHotkeys:) keyEquivalent:@""];
     hotkeys.target = self;
     hotkeys.state = _transmitHotkeys ? NSControlStateValueOn : NSControlStateValueOff;
@@ -733,8 +733,8 @@ static __weak IddDisplayWindow *g_mouseOwner;
         [self saveDisplaySettings];
         NSLog(@"IDD [%@]: Keyboard capture failed (%d).", self.name, error);
         NSAlert *alert = [[NSAlert alloc] init];
-        alert.messageText = @"Keyboard capture could not be enabled";
-        alert.informativeText = @"macOS did not allow the viewer to capture system keyboard shortcuts. Transmit Keyboard Hotkeys has been turned off.";
+        alert.messageText = NSLocalizedString(@"Keyboard capture could not be enabled", nil);
+        alert.informativeText = NSLocalizedString(@"macOS did not allow the viewer to capture system keyboard shortcuts. Transmit Keyboard Hotkeys has been turned off.", nil);
         [alert beginSheetModalForWindow:self.window completionHandler:nil];
     }
 }

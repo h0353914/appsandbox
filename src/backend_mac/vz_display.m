@@ -17,7 +17,7 @@
                                                     styleMask:style
                                                       backing:NSBackingStoreBuffered
                                                         defer:NO];
-    window.title = [NSString stringWithFormat:@"%@ — Display", vm.name];
+    window.title = [NSString stringWithFormat:NSLocalizedString(@"%@ — Display", nil), vm.name];
     [window center];
 
     self = [super initWithWindow:window];

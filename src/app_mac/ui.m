@@ -379,7 +379,7 @@ static void handleBrowseImage(NSDictionary *msg) {
         if (iso)  [types addObject:iso];
         if (ipsw) [types addObject:ipsw];
         panel.allowedContentTypes = types;
-        panel.message = @"Select a Windows ISO (.iso) or macOS restore image (.ipsw)";
+        panel.message = NSLocalizedString(@"Select a Windows ISO (.iso) or macOS restore image (.ipsw)", nil);
         [panel beginWithCompletionHandler:^(NSModalResponse result) {
             NSString *path = @"";
             if (result == NSModalResponseOK && panel.URL) path = panel.URL.path;
@@ -396,7 +396,7 @@ static void handleBrowseDiskDirectory(NSDictionary *msg) {
         panel.canChooseDirectories = YES;
         panel.canCreateDirectories = YES;
         panel.allowsMultipleSelection = NO;
-        panel.message = @"Choose a folder for this VM's disks";
+        panel.message = NSLocalizedString(@"Choose a folder for this VM's disks", nil);
         panel.directoryURL = initial.length ? [NSURL fileURLWithPath:initial isDirectory:YES]
                                             : [VmDir vmsRootDirectory];
         [panel beginWithCompletionHandler:^(NSModalResponse result) {

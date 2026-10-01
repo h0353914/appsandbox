@@ -1,0 +1,25 @@
+/* App Sandbox -- native (AppKit) strings. The key is the English text; the
+ * English file maps each key to itself so it documents what is localizable. */
+
+"Quit %@" = "Quit %@";
+"View" = "View";
+"Window" = "Window";
+"Help" = "Help";
+"Event Log" = "Event Log";
+"AppSandbox Event Log" = "AppSandbox Event Log";
+"Quit while creating a VM?" = "Quit while creating a VM?";
+"The following VM is still being created: %@.\n\nQuitting now will cancel the download and delete it." = "The following VM is still being created: %@.\n\nQuitting now will cancel the download and delete it.";
+"Quit while creating VMs?" = "Quit while creating VMs?";
+"The following VMs are still being created: %@.\n\nQuitting now will cancel the download and delete them." = "The following VMs are still being created: %@.\n\nQuitting now will cancel the download and delete them.";
+"Quit and Delete" = "Quit and Delete";
+"Cancel" = "Cancel";
+"AppSandbox is already running" = "AppSandbox is already running";
+"Either the app window or the headless daemon is already running. Only one can run at a time." = "Either the app window or the headless daemon is already running. Only one can run at a time.";
+"Select a Windows ISO (.iso) or macOS restore image (.ipsw)" = "Select a Windows ISO (.iso) or macOS restore image (.ipsw)";
+"Choose a folder for this VM's disks" = "Choose a folder for this VM's disks";
+"%@ — Display" = "%@ — Display";
+"%@%@ — Display" = "%@%@ — Display";
+"Mute audio" = "Mute audio";
+"Transmit Keyboard Hotkeys" = "Transmit Keyboard Hotkeys";
+"Keyboard capture could not be enabled" = "Keyboard capture could not be enabled";
+"macOS did not allow the viewer to capture system keyboard shortcuts. Transmit Keyboard Hotkeys has been turned off." = "macOS did not allow the viewer to capture system keyboard shortcuts. Transmit Keyboard Hotkeys has been turned off.";

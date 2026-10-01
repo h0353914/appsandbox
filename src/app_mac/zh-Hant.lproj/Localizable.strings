@@ -1,0 +1,25 @@
+/* App Sandbox -- native (AppKit) strings, Traditional Chinese. The key is the
+ * English source text. */
+
+"Quit %@" = "結束 %@";
+"View" = "檢視";
+"Window" = "視窗";
+"Help" = "輔助說明";
+"Event Log" = "事件記錄";
+"AppSandbox Event Log" = "AppSandbox 事件記錄";
+"Quit while creating a VM?" = "要在建立虛擬機器時結束嗎？";
+"The following VM is still being created: %@.\n\nQuitting now will cancel the download and delete it." = "以下虛擬機器仍在建立中：%@。\n\n現在結束會取消下載並將其刪除。";
+"Quit while creating VMs?" = "要在建立虛擬機器時結束嗎？";
+"The following VMs are still being created: %@.\n\nQuitting now will cancel the download and delete them." = "以下虛擬機器仍在建立中：%@。\n\n現在結束會取消下載並將它們刪除。";
+"Quit and Delete" = "結束並刪除";
+"Cancel" = "取消";
+"AppSandbox is already running" = "AppSandbox 已在執行";
+"Either the app window or the headless daemon is already running. Only one can run at a time." = "App 視窗或無介面常駐程式已在執行中。一次只能執行其中一個。";
+"Select a Windows ISO (.iso) or macOS restore image (.ipsw)" = "請選擇 Windows ISO (.iso) 或 macOS 還原映像 (.ipsw)";
+"Choose a folder for this VM's disks" = "請為此虛擬機器的磁碟選擇資料夾";
+"%@ — Display" = "%@ — 顯示器";
+"%@%@ — Display" = "%@%@ — 顯示器";
+"Mute audio" = "靜音";
+"Transmit Keyboard Hotkeys" = "傳送鍵盤快速鍵";
+"Keyboard capture could not be enabled" = "無法啟用鍵盤擷取";
+"macOS did not allow the viewer to capture system keyboard shortcuts. Transmit Keyboard Hotkeys has been turned off." = "macOS 不允許檢視器擷取系統鍵盤快速鍵。「傳送鍵盤快速鍵」已關閉。";

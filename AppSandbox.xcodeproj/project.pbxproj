@@ -22,6 +22,7 @@
 		/* App target — Resources */
 		6003000000000000000000AA /* web in Resources */ = {isa = PBXBuildFile; fileRef = 5003000000000000000000AA /* web */; };
 		6004000000000000000000AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5004000000000000000000AA /* Assets.xcassets */; };
+		6101000000000000000000AA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5101000000000000000000AA /* Localizable.strings */; };
 		/* App target — Embed Frameworks */
 		6010000000000000000000BB /* AppSandboxCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C002000000000000000000BB /* AppSandboxCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		/* Framework target — Sources (backend_mac) */
@@ -235,6 +236,8 @@
 		B0B0000000000000000000FF /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = src/app_mac/xcconfig/Local.xcconfig; sourceTree = "<group>"; };
 		5002000000000000000000AA /* AppSandbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppSandbox.entitlements; sourceTree = "<group>"; };
 		5003000000000000000000AA /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; path = web; sourceTree = SOURCE_ROOT; };
+		5102000000000000000000AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5103000000000000000000AA /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5004000000000000000000AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C001000000000000000000AA /* AppSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C002000000000000000000BB /* AppSandboxCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppSandboxCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,6 +295,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5101000000000000000000AA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5102000000000000000000AA /* en */,
+				5103000000000000000000AA /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin PBXGroup section */
 		7001000000000000000000AA = {
@@ -377,6 +392,7 @@
 				5001000000000000000000AA /* Info.plist */,
 				5002000000000000000000AA /* AppSandbox.entitlements */,
 				5004000000000000000000AA /* Assets.xcassets */,
+				5101000000000000000000AA /* Localizable.strings */,
 				1020000000000000000000BB /* AppSandboxCore-Info.plist */,
 			);
 			name = app_mac;
@@ -603,6 +619,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hant",
 				Base,
 			);
 			mainGroup = 7001000000000000000000AA;
@@ -693,6 +710,7 @@
 			files = (
 				6003000000000000000000AA /* web in Resources */,
 				6004000000000000000000AA /* Assets.xcassets in Resources */,
+				6101000000000000000000AA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

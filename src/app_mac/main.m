@@ -25,10 +25,10 @@ int main(int argc, const char *argv[]) {
             [app setActivationPolicy:NSApplicationActivationPolicyRegular];
             NSAlert *alert = [[NSAlert alloc] init];
             alert.alertStyle = NSAlertStyleInformational;
-            alert.messageText = @"AppSandbox is already running";
-            alert.informativeText = @"Either the app window or the headless "
+            alert.messageText = NSLocalizedString(@"AppSandbox is already running", nil);
+            alert.informativeText = NSLocalizedString(@"Either the app window or the headless "
                                     @"daemon is already running. Only one can "
-                                    @"run at a time.";
+                                    @"run at a time.", nil);
             [alert runModal];
             return 0;
         }

@@ -43,7 +43,7 @@
                                               styleMask:mask
                                                 backing:NSBackingStoreBuffered
                                                   defer:NO];
-    self.window.title = @"AppSandbox Event Log";
+    self.window.title = NSLocalizedString(@"AppSandbox Event Log", nil);
     self.window.releasedWhenClosed = NO;
     self.window.appearance = [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua];
     [self.window setFrameAutosaveName:@"EventLogWindow"];
