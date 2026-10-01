@@ -14,25 +14,29 @@
 <!-- Virtual Machines -->
 <section id="vm-section">
     <div class="section-header">
-        <h2>Sandboxes</h2>
-        <button id="btn-new-sandbox" class="primary" onclick="openCreateModal()">+ New Sandbox</button>
+        <h2 data-i18n>Sandboxes</h2>
+        <div class="header-actions">
+            <label for="lang-select" class="lang-label" data-i18n-title title="Language">&#x1F310;</label>
+            <select id="lang-select" data-i18n-title title="Language" onchange="setLanguage(this.value)"></select>
+            <button id="btn-new-sandbox" class="primary" onclick="openCreateModal()" data-i18n>+ New Sandbox</button>
+        </div>
     </div>
     <div class="vm-table-wrap">
         <table id="vm-table">
             <thead><tr>
-                <th>Name</th>
-                <th>OS</th>
-                <th>Status</th>
-                <th>Agent</th>
-                <th>CPU</th>
-                <th>RAM (MB)</th>
-                <th>HDD (GB)</th>
-                <th>GPU</th>
-                <th>Network</th>
-                <th class="win-only">Snapshot</th>
+                <th data-i18n>Name</th>
+                <th data-i18n>OS</th>
+                <th data-i18n>Status</th>
+                <th data-i18n>Agent</th>
+                <th data-i18n>CPU</th>
+                <th data-i18n>RAM (MB)</th>
+                <th data-i18n>HDD (GB)</th>
+                <th data-i18n>GPU</th>
+                <th data-i18n>Network</th>
+                <th class="win-only" data-i18n>Snapshot</th>
                 <th class="icon-col">&#x25B6;&#xFE0F;</th>
-                <th class="icon-col" title="IDD Display">&#x1F4FA;</th>
-                <th class="icon-col" title="SSH">&gt;_</th>
+                <th class="icon-col" data-i18n-title title="IDD Display">&#x1F4FA;</th>
+                <th class="icon-col" data-i18n-title title="SSH">&gt;_</th>
                 <th class="icon-col">&#x23FB;</th>
                 <th class="icon-col">&#x2715;&#xFE0F;</th>
                 <th class="icon-col">&#x1F5D1;&#xFE0F;</th>
@@ -45,29 +49,26 @@
 
 <!-- Log -->
 <section id="log-section">
-    <h2 class="collapsible" onclick="toggleSection('log-section')"><span class="collapse-arrow" id="log-section-arrow">&#x25BC;</span> Log</h2>
+    <h2 class="collapsible" onclick="toggleSection('log-section')"><span class="collapse-arrow" id="log-section-arrow">&#x25BC;</span> <span data-i18n>Log</span></h2>
     <div id="log-panel"></div>
 </section>
 
 <!-- Prerequisite modal -->
 <div class="modal-overlay" id="prereq-overlay">
     <div class="modal">
-        <h3>Virtual Machine Platform Required</h3>
-        <p id="prereq-message">App Sandbox requires the <strong>Virtual Machine Platform</strong> Windows feature to create and run VMs. This feature is not currently enabled.</p>
-        <div class="modal-buttons" id="prereq-buttons">
-            <button onclick="document.getElementById('prereq-overlay').classList.remove('active')">Cancel</button>
-            <button class="primary" onclick="enableFeature()">Enable</button>
-        </div>
+        <h3 data-i18n>Virtual Machine Platform Required</h3>
+        <p id="prereq-message"></p>
+        <div class="modal-buttons" id="prereq-buttons"></div>
     </div>
 </div>
 
 <!-- Create Sandbox modal -->
 <div class="modal-overlay" id="create-vm-overlay">
     <div class="modal wide">
-        <h3>New Sandbox</h3>
+        <h3 data-i18n>New Sandbox</h3>
         <div class="modal-form-body">
         <div class="form-grid">
-            <label for="os-type">OS Type:</label>
+            <label for="os-type" data-i18n>OS Type:</label>
             <div class="form-row">
                 <select id="os-type" onchange="applyOsTypeUI()">
                     <option value="Windows" selected>Windows</option>
@@ -76,18 +77,18 @@
                 </select>
             </div>
 
-            <label for="vm-name">VM Name:</label>
+            <label for="vm-name" data-i18n>VM Name:</label>
             <div class="form-row">
                 <input type="text" id="vm-name" value="MyAppSandbox" class="input-md" autocorrect="off" autocapitalize="off" spellcheck="false">
                 <span class="field-warn" id="vm-name-warn"></span>
             </div>
 
-            <label class="needs-iso">OS Image:</label>
+            <label class="needs-iso" data-i18n>OS Image:</label>
             <div class="image-row needs-iso">
-                <input type="text" id="image-path" placeholder="Path to ISO..." autocorrect="off" autocapitalize="off" spellcheck="false">
-                <button id="btn-browse" onclick="sendCmd('browseImage')">Browse...</button>
-                <span class="or-separator win-only">OR</span>
-                <label class="win-only" style="text-align:left">Template:</label>
+                <input type="text" id="image-path" data-i18n-placeholder placeholder="Path to ISO..." autocorrect="off" autocapitalize="off" spellcheck="false">
+                <button id="btn-browse" onclick="sendCmd('browseImage')" data-i18n>Browse...</button>
+                <span class="or-separator win-only" data-i18n>OR</span>
+                <label class="win-only" style="text-align:left" data-i18n>Template:</label>
                 <div class="template-dropdown win-only" id="template-dropdown">
                     <div class="template-dropdown-selected" id="template-dropdown-selected">(None)</div>
                     <div class="template-dropdown-list" id="template-dropdown-list"></div>
@@ -95,80 +96,80 @@
                 </div>
             </div>
 
-            <label class="needs-linux-version">Distribution:</label>
+            <label class="needs-linux-version" data-i18n>Distribution:</label>
             <div class="form-row needs-linux-version">
                 <select id="linux-version">
                     <option value="ubuntu-26.04" selected>Ubuntu 26.04 LTS</option>
                 </select>
-                <span class="host-info">Downloaded on first create (~600 MB), cached on the host</span>
+                <span class="host-info" data-i18n>Downloaded on first create (~600 MB), cached on the host</span>
             </div>
 
-            <label for="hdd-size">HDD Size:</label>
+            <label for="hdd-size" data-i18n>HDD Size:</label>
             <div class="form-row">
                 <input type="number" id="hdd-size" value="64" min="1" class="input-sm"> GB
-                <button id="btn-disk-location" class="disk-location-btn" aria-haspopup="dialog" title="HDD Location" onclick="openDiskLocationModal()">HDD location...</button>
+                <button id="btn-disk-location" class="disk-location-btn" aria-haspopup="dialog" title="HDD Location" onclick="openDiskLocationModal()" data-i18n>HDD location...</button>
                 <span class="host-info" id="host-hdd"></span>
             </div>
 
-            <label for="ram-size">RAM Size:</label>
+            <label for="ram-size" data-i18n>RAM Size:</label>
             <div class="form-row">
                 <input type="number" id="ram-size" value="16384" min="512" step="2" class="input-sm"> MB
                 <span class="host-info" id="host-ram"></span>
             </div>
 
-            <label for="cpu-cores">CPU Cores:</label>
+            <label for="cpu-cores" data-i18n>CPU Cores:</label>
             <div class="form-row">
                 <input type="number" id="cpu-cores" value="8" min="1" class="input-sm">
                 <span class="host-info" id="host-cpu"></span>
             </div>
 
-            <label for="gpu-mode">GPU:</label>
+            <label for="gpu-mode" data-i18n>GPU:</label>
             <div class="form-row">
                 <select id="gpu-mode">
-                    <option value="0">None</option>
-                    <option value="1" selected>Default GPU</option>
+                    <option value="0" data-i18n>None</option>
+                    <option value="1" selected data-i18n>Default GPU</option>
                 </select>
             </div>
 
-            <label for="net-mode" class="windows-host-only">Network:</label>
+            <label for="net-mode" class="windows-host-only" data-i18n>Network:</label>
             <div class="form-row windows-host-only">
                 <select id="net-mode" onchange="onNetModeChange()">
-                    <option value="0">None</option>
+                    <option value="0" data-i18n>None</option>
                     <option value="1" selected>NAT</option>
-                    <option value="2">External</option>
-                    <option value="3">Internal</option>
+                    <option value="2" data-i18n>External</option>
+                    <option value="3" data-i18n>Internal</option>
                 </select>
-                <label id="net-adapter-label" style="text-align:left">Adapter:</label>
+                <label id="net-adapter-label" style="text-align:left" data-i18n>Adapter:</label>
                 <select id="net-adapter"></select>
             </div>
 
-            <label>Username:</label>
+            <label data-i18n>Username:</label>
             <div class="cred-row">
                 <input type="text" id="admin-user" value="user" class="input-md" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required>
                 <span class="field-warn" id="admin-user-warn"></span>
             </div>
 
-            <label>Password:</label>
+            <label data-i18n>Password:</label>
             <div class="cred-row">
                 <input type="password" id="admin-pass" value="test123" required>
-                <label>Confirm:</label>
+                <label data-i18n>Confirm:</label>
                 <input type="password" id="admin-confirm" value="test123" required>
                 <span class="toggle-pass" onmousedown="showPassword()" onmouseup="hidePassword()" onmouseleave="hidePassword()">&#x1F441;</span>
                 <span class="field-warn" id="admin-pass-warn"></span>
             </div>
 
-            <label>Options:</label>
+            <label data-i18n>Options:</label>
             <div class="form-row">
-                <label class="needs-windows" title="Disable Secure Boot and enable test-signing (required to load the test-signed guest drivers)"><input type="checkbox" id="test-mode"> Test Mode</label>
-                <label title="Exposes the VM's sshd on a host-loopback port, tunnelled over vsock"><input type="checkbox" id="ssh-enabled" onchange="onSshToggle()"> SSH Server</label>
-                <label title="Deploy the AppSandbox SSH public key so you can connect with key auth (requires SSH Server)"><input type="checkbox" id="ssh-deploy-key" disabled> Deploy SSH key</label>
+                <label class="needs-windows" data-i18n-title title="Disable Secure Boot and enable test-signing (required to load the test-signed guest drivers)"><input type="checkbox" id="test-mode"> <span data-i18n>Test Mode</span></label>
+                <label data-i18n-title title="Exposes the VM's sshd on a host-loopback port, tunnelled over vsock"><input type="checkbox" id="ssh-enabled" onchange="onSshToggle()"> <span data-i18n>SSH Server</span></label>
+                <label data-i18n-title title="Deploy the AppSandbox SSH public key so you can connect with key auth (requires SSH Server)"><input type="checkbox" id="ssh-deploy-key" disabled> <span data-i18n>Deploy SSH key</span></label>
             </div>
         </div>
         </div>
         <div class="modal-buttons">
-            <button onclick="closeCreateModal()">Cancel</button>
-            <button id="btn-create-template" class="win-only" disabled onclick="onCreateTemplate()">Build Template</button>
-            <button id="btn-create" class="primary" disabled onclick="onCreateVm()">Create Sandbox</button>
+            <button onclick="closeCreateModal()" data-i18n>Cancel</button>
+            <button id="btn-create-template" class="win-only" disabled onclick="onCreateTemplate()" data-i18n>Build Template</button>
+            <button id="btn-create" class="primary" disabled onclick="onCreateVm()" data-i18n>Create Sandbox</button>
         </div>
     </div>
 </div>
@@ -176,20 +177,20 @@
 <!-- HDD location modal -->
 <div class="modal-overlay" id="disk-location-overlay">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="disk-location-title">
-        <h3 id="disk-location-title">HDD Location</h3>
-        <p id="disk-directory-help">Choose an existing folder. Disks are stored in a subfolder named after the VM.</p>
+        <h3 id="disk-location-title" data-i18n>HDD Location</h3>
+        <p id="disk-directory-help" data-i18n>Choose an existing folder. Disks are stored in a subfolder named after the VM.</p>
         <div class="disk-directory-field">
-            <label for="disk-directory" class="disk-directory-label">Folder:</label>
+            <label for="disk-directory" class="disk-directory-label" data-i18n>Folder:</label>
             <div class="disk-directory-row">
                 <input type="text" id="disk-directory" aria-describedby="disk-directory-help disk-directory-warn" autocorrect="off" autocapitalize="off" spellcheck="false">
-                <button id="btn-browse-disk-directory" onclick="sendCmd('browseDiskDirectory', { path: document.getElementById('disk-directory').value.trim() })">Browse...</button>
+                <button id="btn-browse-disk-directory" onclick="sendCmd('browseDiskDirectory', { path: document.getElementById('disk-directory').value.trim() })" data-i18n>Browse...</button>
             </div>
             <span id="disk-directory-warn" class="field-warn" aria-live="polite"></span>
             <span id="disk-location-space" class="host-info" aria-live="polite"></span>
         </div>
         <div class="modal-buttons">
-            <button onclick="closeDiskLocationModal(false)">Cancel</button>
-            <button id="btn-save-disk-location" class="primary" onclick="closeDiskLocationModal(true)">Save</button>
+            <button onclick="closeDiskLocationModal(false)" data-i18n>Cancel</button>
+            <button id="btn-save-disk-location" class="primary" onclick="closeDiskLocationModal(true)" data-i18n>Save</button>
         </div>
     </div>
 </div>
@@ -199,41 +200,41 @@
         <h3 id="edit-vm-title">Edit</h3>
         <div class="modal-form-body">
             <div class="form-grid">
-                <label for="edit-ram-size">RAM Size:</label>
+                <label for="edit-ram-size" data-i18n>RAM Size:</label>
                 <div class="form-row">
                     <input type="number" id="edit-ram-size" min="512" step="2" class="input-sm" aria-describedby="edit-vm-warn"> MB
                     <span class="host-info" id="edit-host-ram"></span>
                 </div>
 
-                <label for="edit-cpu-cores">CPU Cores:</label>
+                <label for="edit-cpu-cores" data-i18n>CPU Cores:</label>
                 <div class="form-row">
                     <input type="number" id="edit-cpu-cores" min="1" class="input-sm" aria-describedby="edit-vm-warn">
                     <span class="host-info" id="edit-host-cpu"></span>
                 </div>
 
-                <label for="edit-gpu-mode" class="win-only">GPU:</label>
+                <label for="edit-gpu-mode" class="win-only" data-i18n>GPU:</label>
                 <div class="form-row win-only">
                     <select id="edit-gpu-mode">
-                        <option value="0">None</option>
-                        <option value="1">Default GPU</option>
+                        <option value="0" data-i18n>None</option>
+                        <option value="1" data-i18n>Default GPU</option>
                     </select>
                 </div>
 
-                <label for="edit-net-mode" class="win-only">Network:</label>
+                <label for="edit-net-mode" class="win-only" data-i18n>Network:</label>
                 <div class="form-row win-only">
                     <select id="edit-net-mode">
-                        <option value="0">None</option>
+                        <option value="0" data-i18n>None</option>
                         <option value="1">NAT</option>
-                        <option value="2">External</option>
-                        <option value="3">Internal</option>
+                        <option value="2" data-i18n>External</option>
+                        <option value="3" data-i18n>Internal</option>
                     </select>
                 </div>
             </div>
             <span id="edit-vm-warn" class="field-warn" aria-live="polite"></span>
         </div>
         <div class="modal-buttons">
-            <button onclick="closeEditVmModal()">Cancel</button>
-            <button id="btn-save-edit-vm" class="primary" onclick="saveEditVm()">Save</button>
+            <button onclick="closeEditVmModal()" data-i18n>Cancel</button>
+            <button id="btn-save-edit-vm" class="primary" onclick="saveEditVm()" data-i18n>Save</button>
         </div>
     </div>
 </div>
@@ -243,15 +244,15 @@
         <h3 id="snapshot-title">Snapshots</h3>
         <div class="modal-form-body">
             <p id="snapshot-current"></p>
-            <div id="snapshot-tree" role="group" aria-label="Snapshots and branches" aria-describedby="snapshot-help"></div>
+            <div id="snapshot-tree" role="group" data-i18n-aria-label aria-label="Snapshots and branches" aria-describedby="snapshot-help"></div>
             <p id="snapshot-help"></p>
             <span id="snapshot-warn" class="field-warn" aria-live="polite"></span>
         </div>
         <div class="modal-buttons">
-            <button id="btn-snapshot-create" class="primary" onclick="takeSnapshot()">New Snapshot</button>
-            <button id="btn-snapshot-rename" onclick="renameSnapshot()">Rename</button>
-            <button id="btn-snapshot-delete" class="danger" onclick="deleteSnapshot()">Delete</button>
-            <button onclick="closeSnapshotModal()">Close</button>
+            <button id="btn-snapshot-create" class="primary" onclick="takeSnapshot()" data-i18n>New Snapshot</button>
+            <button id="btn-snapshot-rename" onclick="renameSnapshot()" data-i18n>Rename</button>
+            <button id="btn-snapshot-delete" class="danger" onclick="deleteSnapshot()" data-i18n>Delete</button>
+            <button onclick="closeSnapshotModal()" data-i18n>Close</button>
         </div>
     </div>
 </div>
@@ -262,19 +263,20 @@
         <h3 id="modal-title">Confirm</h3>
         <p id="modal-message"></p>
         <label style="display:none; font-size:12px; color:var(--text-dim); cursor:pointer; margin-bottom:8px;">
-            <input type="checkbox" id="modal-dont-show"> Don't show this again
+            <input type="checkbox" id="modal-dont-show"> <span data-i18n>Don't show this again</span>
         </label>
         <div id="modal-input-row" style="display:none; margin-bottom:12px;">
             <label style="font-size:12px; color:var(--text-dim);" id="modal-input-label">Name:</label>
             <input type="text" id="modal-input" style="width:100%; margin-top:4px;" autocorrect="off" autocapitalize="off" spellcheck="false">
         </div>
         <div class="modal-buttons">
-            <button onclick="modalResolve(false)">Cancel</button>
+            <button onclick="modalResolve(false)" data-i18n>Cancel</button>
             <button class="danger" onclick="modalResolve(true)" id="modal-confirm-btn">Delete</button>
         </div>
     </div>
 </div>
 
+<script src="i18n.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

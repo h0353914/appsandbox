@@ -20,7 +20,7 @@
 body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', sans-serif;
     font-size: 13px;
     padding: 8px 12px;
     overflow: hidden;
@@ -56,6 +56,14 @@ h2 {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+/* Language picker sits beside the New Sandbox button */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.lang-label { font-size: 13px; cursor: default; }
+#lang-select { min-width: 100px; }
 #btn-new-sandbox {
     height: 26px;
     padding: 2px 14px;
